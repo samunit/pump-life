@@ -47,7 +47,7 @@ var app = {
         app.setStatus("Connecting....");
         var device = e.target.getAttribute('deviceId');
         var name = e.target.getAttribute('deviceName');
-        console.log("Requesting connection to " + device);
+        //console.log("Requesting connection to " + device);
         bluetoothSerial.connect(device, app.onconnect(name), app.ondisconnect);
     },
     
@@ -65,13 +65,13 @@ var app = {
             connectedTo.innerHTML = "";
             app.setStatus("Disconnected.");
         }, function(error){
-            console.log("Error Disconnecting" + error);
+            app.setStatus("Error Disconnecting.");
         });
     },
     
     sendToArduino: function(c) {
-        bluetoothSerial.write("fromDevice: " + c + "\n");
-        console.log(c);
+        bluetoothSerial.write("c" + c + "\n");
+        console.log("c " + c + "\n");
     },
     
     searchBlutooth: function(){
@@ -123,16 +123,16 @@ var app = {
     },
     
     lightOn: function(){
-        app.sendToArduino("lightOn");
+        app.sendToArduino("1");
     },
     lightOff: function(){
-        app.sendToArduino("lightOff");
+        app.sendToArduino("2");
     },
     valveOn: function(){
-        app.sendToArduino("valveOn");
+        app.sendToArduino("3");
     },
     valveOff: function(){
-        app.sendToArduino("valveOff");
+        app.sendToArduino("4");
     },
     
     timeoutId: 0,
